@@ -1,0 +1,16 @@
+# private / local only
+.env*
+.vercel
+.claude
+
+# not part of the website
+reports/
+print/
+COMPETITOR-EDGE.md
+/*.pdf
+/*.jpeg
+/*.jpg
+/*.png
+/*.PNG
+/*.xlsx
+/*.docx

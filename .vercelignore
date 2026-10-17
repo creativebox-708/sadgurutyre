@@ -1,0 +1,13 @@
+.claude
+.vercel
+.env*
+*.md
+reports
+print
+/*.pdf
+/*.jpeg
+/*.jpg
+/*.png
+/*.PNG
+/*.xlsx
+/*.docx
