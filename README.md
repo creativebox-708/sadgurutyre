@@ -7,8 +7,9 @@ Live site: https://sadguru-tyres.vercel.app
 ## What is in the site
 
 - Hero with a quote form that opens WhatsApp with the customer's details filled in
-- 15 tyre brand logos, services, a tyre size finder, FAQs and customer reviews
+- 14 tyre brand logos, services, a tyre size finder, FAQs and customer reviews
 - 16-photo gallery (customer number plates are blurred) with a full-screen viewer
+- Quick-service section that highlights fast, precise wheel alignment and balancing (no service times shown)
 - Dark theme by default, with a light option the visitor can switch to
 - Local search setup: page tags, business and FAQ structured data, `sitemap.xml`, `robots.txt`, share image
 
@@ -53,6 +54,5 @@ npx vercel deploy --prod --yes
 ## Still to confirm with the owner
 
 - Opening and closing hours, including Friday
-- Real service times (the quick-service strip shows 20, 25 and 30 minutes as placeholders)
-- Which brands are supplied, since the site says 15
+- Which brands are supplied, since the site says 14
 - Payment methods, parking and an email address
