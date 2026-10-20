@@ -116,11 +116,20 @@ input.bad{border-color:#ff5a4d}
 .ico{width:52px;height:52px;border-radius:14px;background:rgba(255,176,32,.1);display:grid;place-items:center;margin-bottom:18px}
 .ico svg{width:26px;height:26px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
-.strip{border-block:1px solid var(--line);background:var(--surface2);overflow:hidden}
-.strip-in{display:flex;gap:40px;padding:18px 0;white-space:nowrap;overflow-x:auto;scrollbar-width:none;justify-content:center}
-.strip-in::-webkit-scrollbar{display:none}
-.strip-in span{font:600 .85rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);position:relative;padding-left:18px}
-.strip-in span::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;background:var(--accent);border-radius:2px;transform:rotate(45deg)}
+.strip{position:relative;border-block:1px solid var(--line);background:var(--surface2);overflow:hidden}
+.strip-track{display:flex;width:max-content;animation:marquee 45s linear infinite}
+.strip-group{display:flex;flex:none;align-items:center;justify-content:space-around;gap:56px;min-width:100vw;padding:18px 28px;white-space:nowrap}
+.strip-group li{font:600 .85rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);position:relative;padding-left:18px}
+.strip-group li::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;background:var(--accent);border-radius:2px;transform:rotate(45deg)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.strip.paused .strip-track{animation-play-state:paused!important}
+@media (hover:hover){.strip:hover .strip-track{animation-play-state:paused!important}}
+.strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.strip::before{left:0;background:linear-gradient(90deg,var(--surface2),transparent)}
+.strip::after{right:0;background:linear-gradient(270deg,var(--surface2),transparent)}
+.strip-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);z-index:3;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 .72rem var(--body);cursor:pointer}
+.strip-btn:hover{border-color:var(--accent)}
+.strip-btn[hidden]{display:none}
 
 .brands{grid-template-columns:repeat(3,1fr)}
 .brand{border:1px solid var(--line);border-radius:var(--r);padding:36px 28px;text-align:center;background:var(--surface);transition:border-color .3s,transform .3s}
@@ -319,5 +328,6 @@ address strong{color:var(--text)}
   /* loading indicator is essential feedback: keep it turning, slower */
   .spinner{animation:spin 1.8s linear infinite!important}
   .loader{animation:loaderOut .01s linear 3.2s forwards!important}
+  .strip-track{animation:marquee 70s linear infinite!important}
   .loader-tag{animation:none!important;opacity:1}
 }

@@ -16,6 +16,22 @@
   }
 
 
+  // Highlights ribbon: pause / play. Visitors who prefer reduced motion get it paused to start.
+  try {
+    var strip = document.getElementById('strip'), stripBtn = document.getElementById('stripBtn');
+    if (strip && stripBtn) {
+      var setStrip = function (paused) {
+        strip.classList.toggle('paused', paused);
+        stripBtn.textContent = paused ? 'Play' : 'Pause';
+        stripBtn.setAttribute('aria-pressed', String(paused));
+        stripBtn.setAttribute('aria-label', paused ? 'Play the moving highlights' : 'Pause the moving highlights');
+      };
+      stripBtn.hidden = false;
+      setStrip(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      stripBtn.addEventListener('click', function () { setStrip(!strip.classList.contains('paused')); });
+    }
+  } catch (e) { /* the ribbon still scrolls without the button */ }
+
   // Nav: solid background after scroll, mobile menu
   var nav = document.getElementById('nav');
   var burger = document.getElementById('burger');
