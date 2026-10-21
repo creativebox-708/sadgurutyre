@@ -1,5 +1,7 @@
 (function () {
   var WA = '919769283143';
+  function tr(s) { return window.__t ? window.__t(s) : s; }
+  function langLine() { var n = window.__langName ? window.__langName() : 'English'; return n === 'English' ? '' : '\nPreferred language: ' + n; }
 
   // Loading screen: hide as early as possible. Runs before everything else on purpose,
   // so a problem further down this file can never leave the spinner on screen.
@@ -22,13 +24,14 @@
     if (strip && stripBtn) {
       var setStrip = function (paused) {
         strip.classList.toggle('paused', paused);
-        stripBtn.textContent = paused ? 'Play' : 'Pause';
+        stripBtn.textContent = tr(paused ? 'Play' : 'Pause');
         stripBtn.setAttribute('aria-pressed', String(paused));
         stripBtn.setAttribute('aria-label', paused ? 'Play the moving highlights' : 'Pause the moving highlights');
       };
       stripBtn.hidden = false;
       setStrip(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       stripBtn.addEventListener('click', function () { setStrip(!strip.classList.contains('paused')); });
+      document.addEventListener('langchange', function () { setStrip(strip.classList.contains('paused')); });
     }
   } catch (e) { /* the ribbon still scrolls without the button */ }
 
@@ -103,14 +106,14 @@
     [f.name, f.phone].forEach(function (i) { i.classList.remove('bad'); });
     if (!f.name.value.trim()) { f.name.classList.add('bad'); ok = false; }
     if (f.phone.value.replace(/\D/g, '').length < 10) { f.phone.classList.add('bad'); ok = false; }
-    if (!ok) { note.textContent = 'Please add your name and a 10-digit mobile number.'; return; }
+    if (!ok) { note.textContent = tr('Please add your name and a 10-digit mobile number.'); return; }
     var msg = 'Hi Sadguru Tyres, I would like a quote.\n' +
       'Name: ' + f.name.value.trim() + '\n' +
       'Mobile: ' + f.phone.value.trim() + '\n' +
       'Car / tyre size: ' + (f.car.value.trim() || 'not sure') + '\n' +
       'Need: ' + f.service.value + '\n' +
-      'When: ' + f.when.value;
-    note.textContent = 'Opening WhatsApp...';
+      'When: ' + f.when.value + langLine();
+    note.textContent = tr('Opening WhatsApp...');
     window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
   });
 
@@ -134,7 +137,7 @@
     e.preventDefault();
     var car = document.getElementById('fCar').value.trim();
     var msg = 'Hi Sadguru Tyres, please share price and brand options for tyre size ' +
-      fW.value + '/' + fA.value + ' R' + fR.value + (car ? ' for my ' + car : '') + '.';
+      fW.value + '/' + fA.value + ' R' + fR.value + (car ? ' for my ' + car : '') + '.' + langLine();
     window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
   });
 

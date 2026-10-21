@@ -10,6 +10,7 @@ Live site: https://sadguru-tyres.vercel.app
 - 14 tyre brand logos, services, a tyre size finder, FAQs and customer reviews
 - 16-photo gallery (customer number plates are blurred) with a full-screen viewer
 - Quick-service section that highlights fast, precise wheel alignment and balancing (no service times shown)
+- Language dropdown: English, Marathi, Hindi, Gujarati and Sindhi (Devanagari). Translations live in `i18n.js`; customer reviews, names and addresses are not translated
 - Dark theme by default, with a light option the visitor can switch to
 - Local search setup: page tags, business and FAQ structured data, `sitemap.xml`, `robots.txt`, share image
 
@@ -19,6 +20,7 @@ Live site: https://sadguru-tyres.vercel.app
 | --- | --- |
 | `index.html` | The whole page, including the search tags and structured data |
 | `styles.css` | All styling, both themes, responsive rules |
+| `i18n.js` | Language dropdown and all translations. Edit a phrase here to fix a translation. Urdu is written but switched off (see `ENABLED`) |
 | `script.js` | Loading screen, theme switch, forms, finder, gallery viewer, QR code |
 | `images/` | Logos, brand logos, gallery photos, hero image, share image |
 | `vercel.json` | Caching and security headers for Vercel |
@@ -56,3 +58,4 @@ npx vercel deploy --prod --yes
 - Opening and closing hours, including Friday
 - Which brands are supplied, since the site says 14
 - Payment methods, parking and an email address
+- A native speaker should proofread the Marathi, Hindi, Gujarati and especially the Sindhi translations
